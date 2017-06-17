@@ -34,6 +34,16 @@ app.locals.locations = initialLocations;
 
 app.get('/locations', (request, response) => response.send({ locations: app.locals.locations }));
 
+app.post('/locations/new', (request, response) => {
+  const validLocation = ['name', 'lat', 'lng'].every(value => request.body[value]);
+
+  if(!validLocation) response.status(422).send({ error: 'Missing content from location form' });
+
+  const newLocation = Object.assign({}, { id: `id${app.locals.locations.length + 1}`}, request.body);
+  app.locals.locations = app.locals.locations.concat(newLocation);
+  response.send(newLocation);
+})
+
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
 
 // Always return the main index.html, so react-router render the route in the client
