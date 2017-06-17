@@ -24,8 +24,6 @@ class MapMarker extends Component {
             >
               <div>
                 <h4>{this.props.name}</h4>
-                <h4>{this.props.location[0]}</h4>
-                <h4>{this.props.location[1]}</h4>
               </div>
             </Tooltip>
           </Marker>
