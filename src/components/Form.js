@@ -33,8 +33,8 @@ class Form extends Component {
           type="submit"
           onClick={(e) => this.submitForm(e, {
             name: this.name.value,
-            lat: this.lat.value,
-            lng: this.lng.value
+            lat: parseFloat(this.lat.value),
+            lng: parseFloat(this.lng.value)
           })}
         >
             Save
