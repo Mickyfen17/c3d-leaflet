@@ -1,11 +1,26 @@
 import React, { Component } from 'react';
-
+import Alert from 'react-s-alert';
 
 class Form extends Component {
   submitForm(e, data) {
+    const { lat, lng } = data;
     e.preventDefault();
-    this.props.addNewLocation(data);
+
+    if(this.validLat(lat) && this.validLng(lng)) {
+      this.props.addNewLocation(data);
+    } else {
+      Alert.error('Please enter a valid Lat & Lng value');
+    }
   }
+
+  validLat(lat) {
+    return isFinite(lat) && Math.abs(lat) <= 90;
+  }
+
+  validLng(lng) {
+    return isFinite(lng) && Math.abs(lng) <= 180;
+  }
+
   render() {
     return (
       <form className="form">
