@@ -2,23 +2,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MapMarker from './Marker'
-import { Map, TileLayer, ZoomControl, Polygon } from 'react-leaflet';
+import { Polygon } from 'react-leaflet';
 
 class AllMarkers extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      polygon: [],
-    };
-    this.handlePolygon = this.handlePolygon.bind(this);
-  }
 
   handlePolygon(clickedVals) {
-    if(JSON.stringify(this.state.polygon).includes(JSON.stringify(clickedVals))) {
-      const filteredPolys = this.state.polygon.filter(latLng => JSON.stringify(clickedVals) !== JSON.stringify(latLng))
-      this.setState({ polygon: filteredPolys })
+    if(JSON.stringify(this.props.polygon).includes(JSON.stringify(clickedVals))) {
+      this.props.removePolygonLink(clickedVals);
     } else {
-      this.setState({ polygon: this.state.polygon.concat([clickedVals]) })
+      this.props.addPolygonLink(clickedVals);
     }
   }
 
@@ -29,7 +21,7 @@ class AllMarkers extends Component {
           key={i}
           location={[+marker.lat, +marker.lng]}
           name={marker.name}
-          handleClick={ this.handlePolygon }
+          handleClick={ (clickedVals) => this.handlePolygon(clickedVals) }
         />
       )
     })
@@ -37,7 +29,7 @@ class AllMarkers extends Component {
     return (
       <div className="paths-container">
         {markerArray}
-        <Polygon color="blue" positions={ this.state.polygon } />
+        <Polygon color="blue" positions={ this.props.polygon } />
       </div>
     );
   }
