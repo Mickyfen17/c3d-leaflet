@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import LeafletMap from '../containers/LeafletMap';
 import FormContainer from '../containers/FormContainer';
+import Alert from 'react-s-alert';
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/stackslide.css';
 
 class App extends Component {
   componentDidMount() {
@@ -14,6 +17,12 @@ class App extends Component {
       <div className="App">
         <FormContainer />
         <LeafletMap locations={this.props.locations} />
+        <Alert
+          stack={{ limit: 3 }}
+          position="top"
+          timeout={ 4000 }
+          effect='stackslide'
+        />
       </div>
     );
   }
