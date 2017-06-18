@@ -3,3 +3,24 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  height: 20px;
+  border: 1px solid #b5d0d0;
+  font-size: 1.1em;
+}
+
+button {
+  width: 85%;
+  height: 40px;
+  padding: 5px;
+  border: 2px solid #b5d0d0;
+  background: #FFF;
+  font-size: 1em;
+  cursor: pointer;
+}
