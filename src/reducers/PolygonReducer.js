@@ -9,7 +9,6 @@ const PolygonLinks = (state = initialState, action) => {
         polygonArray: state.polygonArray.concat([action.data]),
       });
 
-
     case 'REMOVE_POLY_LINK' :
       const filteredPolys = state.polygonArray.filter(latLng =>
         JSON.stringify(action.data) !== JSON.stringify(latLng))

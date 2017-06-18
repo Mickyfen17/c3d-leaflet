@@ -32,6 +32,7 @@ class LeafletMap extends Component {
           zoom={4}
           maxBounds={[[85, 100], [-85, -280]]}
           animate={true}
+          useFlyTo={true}
         >
           <TileLayer
             url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"

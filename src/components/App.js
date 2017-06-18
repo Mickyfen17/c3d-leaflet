@@ -13,10 +13,11 @@ class App extends Component {
     this.props.fetchAllLocations();
   }
   render() {
+    const { locations } = this.props;
     return (
       <div className="App">
         <FormContainer />
-        <LeafletMap locations={this.props.locations} />
+        <LeafletMap locations={locations} />
         <Alert
           stack={{ limit: 3 }}
           position="top"

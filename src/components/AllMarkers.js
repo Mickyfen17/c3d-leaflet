@@ -1,38 +1,36 @@
 /*eslint-disable no-unused-vars*/
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import MapMarker from './Marker'
 import { Polygon } from 'react-leaflet';
 
-class AllMarkers extends Component {
+const AllMarkers = ({ polygon, locations, removePolygonLink, addPolygonLink }) => {
 
-  handlePolygon(clickedVals) {
-    if(JSON.stringify(this.props.polygon).includes(JSON.stringify(clickedVals))) {
-      this.props.removePolygonLink(clickedVals);
+  const handlePolygon = (clickedVals) => {
+    if(JSON.stringify(polygon).includes(JSON.stringify(clickedVals))) {
+      removePolygonLink(clickedVals);
     } else {
-      this.props.addPolygonLink(clickedVals);
+      addPolygonLink(clickedVals);
     }
   }
 
-  render() {
-    const markerArray = this.props.locations.map((marker, i) => {
-      return (
-        <MapMarker
-          key={i}
-          location={[+marker.lat, +marker.lng]}
-          name={marker.name}
-          handleClick={ (clickedVals) => this.handlePolygon(clickedVals) }
-        />
-      )
-    })
-
+  const markerArray = locations.map((marker, i) => {
     return (
-      <div className="paths-container">
-        {markerArray}
-        <Polygon color="blue" positions={ this.props.polygon } />
-      </div>
-    );
-  }
+      <MapMarker
+        key={i}
+        location={[+marker.lat, +marker.lng]}
+        name={marker.name}
+        handleClick={ (clickedVals) => handlePolygon(clickedVals) }
+      />
+    )
+  })
+
+  return (
+    <div className="paths-container">
+      {markerArray}
+      <Polygon color="blue" positions={ polygon } />
+    </div>
+  );
 }
 
 export default AllMarkers;
