@@ -16,7 +16,6 @@ const Form = ({ addNewLocation }) => {
   }
 
   const clearInputs = (inputs) => {
-    console.log(inputs);
     const { name, lat, lng } = inputs
     return [name, lat, lng].map(input => input.value = '');
   }
