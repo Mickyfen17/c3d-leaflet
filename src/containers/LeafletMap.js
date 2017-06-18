@@ -19,7 +19,7 @@ class LeafletMap extends Component {
 
   alterMapCenter(newLocation) {
     const { lat, lng } = newLocation;
-    this.setState({ center: [lat, lng] });
+    this.setState({ center: [parseFloat(lat), parseFloat(lng)] });
   }
 
   render() {
