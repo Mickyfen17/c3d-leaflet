@@ -4,13 +4,13 @@ import Alert from 'react-s-alert';
 const Form = ({ addNewLocation }) => {
 
   const submitForm = (e, data) => {
-    const { lat, lng } = data;
+    const { lat, lng, name } = data;
     e.preventDefault();
 
-    if(validLat(lat) && validLng(lng)) {
+    if(validLat(lat) && validLng(lng) && name.length > 1) {
       addNewLocation(data);
     } else {
-      Alert.error('Please enter a valid Lat & Lng value');
+      Alert.error('Please enter a valid location name, Lat & Lng value');
     }
   }
 
