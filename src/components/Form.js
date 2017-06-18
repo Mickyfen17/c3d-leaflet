@@ -9,9 +9,16 @@ const Form = ({ addNewLocation }) => {
 
     if(validLat(lat) && validLng(lng) && name.length > 1) {
       addNewLocation(data);
+      clearInputs(this);
     } else {
       Alert.error('Please enter a valid location name, Lat & Lng value');
     }
+  }
+
+  const clearInputs = (inputs) => {
+    console.log(inputs);
+    const { name, lat, lng } = inputs
+    return [name, lat, lng].map(input => input.value = '');
   }
 
   const validLat = (lat) => {
