@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LeafletMap from '../containers/LeafletMap';
+import LeafletMap from './LeafletMap';
 import FormContainer from '../containers/FormContainer';
 import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
